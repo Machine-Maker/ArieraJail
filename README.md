@@ -27,8 +27,12 @@ Once you've handcuffed a player, to get him into a cell you have to create a sig
 #### You're done!
 The jail and cells are now setup and ready for use!
 
+---
+
 ### Using handcuffs
 To get a pair of handcuffs in your inventory do __`/handcuffs`__. With the handcuffs, right click on another player. You (and they) will receive a message when they are successfully handcuffed. While the player is handcuffed, they will be walking at half speed and if they get more than 4 blocks away from you, they are teleported to you. The default 4 block distance is configurable. When you arrive at the jail, find an unoccupied cell and right click the sign. When you hover over the sign you should get a message on the action bar telling you to click. When you click, all the items/armor on the player are removed (and stored) and they are teleported into the cell where they stay for a configurable amount of time. You can also choose to release them early by clicking on the sign with a player in the corresponding cell.
+
+---
 
 ### Commands and Permissions
 |Commands     | Aliases      |Description  |Permissions |
@@ -51,3 +55,21 @@ To get a pair of handcuffs in your inventory do __`/handcuffs`__. With the handc
 |`arierajail.handcuffs.bypass`|Makes handcuffs not work on this player|
 |`arierajail.handcuffs.use`|Allows the use of handcuffs on other players|
 |`arierajail.playerquit.bypass`|Allows player to avoid quitting penalties|
+
+---
+
+### Configuration
+* `must-stay-still-time-if-handcuffed-in-seconds: 5` -> Time that player must not move for handcuffs to take effect
+* `max-distance-squared: 16` -> Distance squared (so 4 is default) that the player is allowed to be from the player that cuffed them
+* `if-player-quits:` -> This section deals with what happens to the player if he disconnects while in handcuffs
+    * `kill-player: false` -> If true, player will die and all items will be dropped if he disconnects
+    * `temp-ban:` -> This section deals with banning the player if he disconnects while in handcuffs
+        * `enable: true` -> if true player will be temporarily banned (true by default)
+        * `time-in-minutes: 10` -> Time in minutes the player will be banned
+        * `ban-message: "&4You left the game after you were caught!"` -> Ban message (supports colors)
+* `sentence-length-in-minutes: 5` -> The length the player is in jail before released.
+
+---
+
+### Other info
+The messages.yml file which is generated on first startup contains the configuration for all the messages the plugin sends to players. Feel free to change them as you see fit. The messages that have macros such as `%playername%` or `%jailname%` are pretty self-explanatory and can only be used in the messages that start out with them. I recommend not messing with the other files (ie: jails.yml and signs.yml) unless you want to mass delete your jails and signs. Those files just contain location data and information on the jails, cells, and signs that have to be saved when the server is reloaded.
