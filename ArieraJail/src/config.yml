@@ -1,0 +1,13 @@
+###############################################
+# ArieraJail Configuration by: X1machinemaker1X
+# All Rights Reserved
+###############################################
+must-stay-still-time-if-handcuffed-in-seconds: 5
+max-distance-squared: 16
+if-player-quits:
+  kill-player: false
+  temp-ban:
+    enable: true
+    time-in-minutes: 10
+    ban-message: "&4You left the game after you were caught!"
+sentence-length-in-minutes: 5

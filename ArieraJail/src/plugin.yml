@@ -1,0 +1,72 @@
+name: ArieraJail
+version: 0.1
+desription: Adds jails for criminals
+author: X1machinemaker1X
+depend: [WorldEdit]
+main: me.x1machinemaker1x.arierajail.ArieraJail
+
+commands:
+  handcuffs:
+    description: Gives handcuffs to the player
+    aliases: [cuffs]
+  arierajail:
+    description: Main command for ArieraJail
+    aliases: [aj, ajail]
+        
+permission:
+  arierajail.createcell:
+    default: op
+  arierajail.createjail:
+    default: op
+  arierajail.createsign:
+    default: op
+  arierajail.deletecell:
+    default: op
+  arierajail.deletejail:
+    default: op
+  arierajail.handcuffs:
+    default: op
+  arierajail.jaillist:
+    default: op
+  arierajail.reload:
+    default: op
+  arierajail.setcellspawn:
+    default: op
+  arierajail.setrelease:
+    default: op
+  arierajail.putinjail:
+    default: false
+  arierajail.releasefromjail:
+    default: false
+  arierajail.handcuffs.bypass:
+    default: false
+  arierajail.handcuffs.use:
+    default: false
+  arierajail.playerquit.bypass:
+    default: false
+  arierajail.admin:
+    default: op
+    children:
+      arierajail.createcell: true
+      arierajail.createjail: true
+      arierajail.createsign: true
+      arierajail.deletecell: true
+      arierajail.deletejail: true
+      arierajail.jaillist: true
+      arierajail.reload: true
+      arierajail.setcellspawn: true
+      arierajail.setrelease: true
+  arierajail.cop:
+    default: false
+    children:
+      arierajail.handcuffs: true
+      arierajail.handcuffs.use: true
+      arierajail.putinjail: true
+      arierajail.releasefromjail: true
+  arierajail.*:
+    default: false
+    children:
+      arierajail.admin: true
+      arierajail.cop: true
+      arierajail.handcuffs.bypass: true
+      arierajail.playerquit.bypass: true
