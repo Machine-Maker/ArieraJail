@@ -1,5 +1,5 @@
 name: ArieraJail
-version: 0.1
+version: 0.1.1
 desription: Adds jails for criminals
 author: X1machinemaker1X
 depend: [WorldEdit]

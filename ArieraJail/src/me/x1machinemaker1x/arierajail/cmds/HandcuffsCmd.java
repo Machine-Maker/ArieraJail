@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -26,8 +27,9 @@ public class HandcuffsCmd implements CommandExecutor {
 			p.sendMessage(Messages.PREFIX.toString() + Messages.NO_PERMISSION.toString());
 			return true;
 		}
-		ItemStack handcuffs = new ItemStack(Material.LEASH, 1, (short) 1);
+		ItemStack handcuffs = new ItemStack(Material.GOLD_HOE, 1, (short) Material.GOLD_HOE.getMaxDurability());
 		ItemMeta handCuffMeta = handcuffs.getItemMeta();
+		handCuffMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 		handCuffMeta.setDisplayName(ChatColor.RESET.toString() + ChatColor.BLUE + ChatColor.BOLD + "Handcuffs");
 		List<String> lore = new ArrayList<String>();
 		lore.add(ChatColor.YELLOW + "Right click on a criminal to handcuff them!");
