@@ -26,8 +26,8 @@ public class EntityInteract implements Listener {
 		if (!(e.getRightClicked() instanceof Player)) return;
 		Player clicked = (Player) e.getRightClicked();
 		if (e.getPlayer().getUniqueId().toString().equals(clicked.getUniqueId().toString())) return;
-		if (!e.getPlayer().getInventory().getItemInMainHand().getType().equals(Material.LEASH)) return;
-		if (e.getPlayer().getInventory().getItemInMainHand().getDurability() !=  1) return;
+		if (!e.getPlayer().getInventory().getItemInMainHand().getType().equals(Material.GOLD_HOE)) return;
+		if (e.getPlayer().getInventory().getItemInMainHand().getDurability() !=  Material.GOLD_HOE.getMaxDurability()) return;
 		if (!e.getPlayer().hasPermission("arierajail.handcuffs.use")) {
 			e.getPlayer().sendMessage(Messages.PREFIX.toString() + Messages.NO_PERMISSION.toString());
 			return;
