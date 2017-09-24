@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.x1machinemaker1x.arierajail.utils.Jails;
+import net.md_5.bungee.api.ChatColor;
 
 public class JailTimer extends BukkitRunnable {
 	
@@ -21,9 +22,9 @@ public class JailTimer extends BukkitRunnable {
 	public void run() {
 		if (counter > 0) {
 			if (counter == 60)
-				player.sendMessage("§a1 minute left!");
+				player.sendMessage(ChatColor.GREEN + "1 minute left!");
 			else if (counter == 10) 
-				player.sendMessage("§a10 seconds left");
+				player.sendMessage(ChatColor.GREEN + "10 seconds left");
 			cell.setCounter(counter);
 			counter --;
 		}

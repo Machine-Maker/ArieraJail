@@ -30,9 +30,9 @@ public class PlayerInteract implements Listener {
 			return;
 		}
 		Sign sign = (Sign) e.getClickedBlock().getState();
-		Jail jail = Jails.getInstance().getJail(sign.getLine(1).split(": ยง0")[1]);
+		Jail jail = Jails.getInstance().getJail(sign.getLine(1).split(": ง0")[1]);
 		if (jail == null) return;
-		Cell cell = Jails.getInstance().getCell(sign.getLine(2).split(": ยง0")[1], jail);
+		Cell cell = Jails.getInstance().getCell(sign.getLine(2).split(": ง0")[1], jail);
 		if (cell == null) return;
 		if (Handcuffs.getInstance().isCuffer(e.getPlayer().getUniqueId())) { //player has a cuffed player
 			if (!e.getPlayer().hasPermission("arierajail.putinjail")) {
@@ -55,6 +55,7 @@ public class PlayerInteract implements Listener {
 				cell.lockUp();
 				h.getCuffer().sendMessage(Messages.COP_LOCKED_UP.toString().replace("%playername%", h.getCuffee().getName()));
 				sign.setLine(3, h.getCuffee().getName());
+				sign.update();
 				Handcuffs.getInstance().unCuff(h);
 				cell.startSentence(Configs.getInstance().getConfig(ConfigType.CONFIG).getInt("sentence-length-in-minutes") * 60);
 				Jails.getInstance().saveJails();

@@ -13,13 +13,13 @@ public class JailList extends SubCommand {
 			p.sendMessage(Messages.PREFIX.toString() + Messages.NO_JAILS.toString());
 			return;
 		}
-		p.sendMessage("Â§6=============Â§2JailsÂ§6=============");
+		p.sendMessage("§6=============§2Jails§6=============");
 		for (int i = 0; i < Jails.getInstance().getJails().size(); i++) {
-			p.sendMessage("Â§d" + (i+1) + ":");
-			p.sendMessage(" Â§6Name: Â§e" + Jails.getInstance().getJails().get(i).getName());
-			String cells = "Â§e";
+			p.sendMessage("§d" + (i+1) + ":");
+			p.sendMessage(" §6Name: §e" + Jails.getInstance().getJails().get(i).getName());
+			String cells = "§e";
 			if (Jails.getInstance().getJails().get(i).getCells().isEmpty()) {
-				cells = "Â§cNo cells found!";
+				cells = "§cNo cells found!";
 			}
 			else {
 				for (Cell cell : Jails.getInstance().getJails().get(i).getCells()) {
@@ -27,7 +27,7 @@ public class JailList extends SubCommand {
 				}
 				cells = cells.substring(0, cells.length()-2);
 			}
-			p.sendMessage(" Â§6Cells: " + cells);
+			p.sendMessage(" §6Cells: " + cells);
 		}
 	}
 	

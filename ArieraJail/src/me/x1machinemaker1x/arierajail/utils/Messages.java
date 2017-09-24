@@ -45,6 +45,9 @@ public enum Messages {
 	HANDCUFFED_COP("handcuffed.cop", "&aYou handcuffed %playername%!"),
 	IN_HANDCUFFS("in-handcuffs", "&aYou are in handcuffs!"),
 	TOO_FAR("too-far", "&aYou got too far away! Teleporting you to %name%!"),
+	NO_HANDCUFFS("no-handcuffs", "&cYou have not handcuffed a person!"),
+	UNHANDCUFFED_COP("unhandcuffed.cop", "&aYou have unhandcuffed %playername%!"),
+	UNHANDCUFFED_CRIMINAL("unhandcuffed.criminal", "&aYou have been unhandcuffed!"),
 	
 	CELL_FULL("cell-full", "&cThat cell is already occupied!"),
 	CELL_EMPTY("cell-empty", "&cThat cell is empty!"),

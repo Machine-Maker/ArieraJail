@@ -1,5 +1,5 @@
 name: ArieraJail
-version: 0.1.1
+version: 0.1.2
 desription: Adds jails for criminals
 author: X1machinemaker1X
 depend: [WorldEdit]
@@ -9,6 +9,9 @@ commands:
   handcuffs:
     description: Gives handcuffs to the player
     aliases: [cuffs]
+  unhandcuff:
+    description: Unhandcuffs the player
+    aliases: [uncuff]
   arierajail:
     description: Main command for ArieraJail
     aliases: [aj, ajail]

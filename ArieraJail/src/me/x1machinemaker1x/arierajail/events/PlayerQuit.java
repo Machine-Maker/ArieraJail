@@ -32,6 +32,6 @@ public class PlayerQuit implements Listener {
 			Date date = new Date(System.currentTimeMillis() + (minutes * 60 * 1000));
 			banList.addBan(e.getPlayer().getName(), reason, date, null);
 		}
+		Handcuffs.getInstance().unCuff(Handcuffs.getInstance().getHandcuff(e.getPlayer().getUniqueId()));
 	}
-
 }

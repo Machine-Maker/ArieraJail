@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 
 import me.x1machinemaker1x.arierajail.cmds.HandcuffsCmd;
+import me.x1machinemaker1x.arierajail.cmds.UnhandcuffCmd;
 import me.x1machinemaker1x.arierajail.events.BlockBreak;
 import me.x1machinemaker1x.arierajail.events.EntityInteract;
 import me.x1machinemaker1x.arierajail.events.OnCommand;
@@ -64,6 +65,7 @@ public class ArieraJail extends JavaPlugin {
 				
 		getCommand("handcuffs").setExecutor(new HandcuffsCmd());
 		getCommand("arierajail").setExecutor(cm);
+		getCommand("unhandcuff").setExecutor(new UnhandcuffCmd());
 	}
 	
 	public void onDisable() {

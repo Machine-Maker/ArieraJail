@@ -71,7 +71,7 @@ public class PlayerMove implements Listener {
 				Block b = e.getPlayer().getTargetBlock((Set<Material>) null, 4);
 				if (b.getType().equals(Material.SIGN_POST) || b.getType().equals(Material.WALL_SIGN)) {
 					if (Signs.getInstance().isSign(b.getLocation())) {
-						sendActionBar(e.getPlayer(), ChatColor.GREEN + "Click to put §6" + h.getCuffee().getName() + " §ain this cell!");
+						sendActionBar(e.getPlayer(), ChatColor.GREEN + "Click to put �6" + h.getCuffee().getName() + " �ain this cell!");
 					}
 				}
 			}
@@ -90,7 +90,7 @@ public class PlayerMove implements Listener {
 					Jail jail = Jails.getInstance().getJail(Signs.getInstance().getSign(b.getLocation()).getJailString());
 					Cell cell = Jails.getInstance().getCell(Signs.getInstance().getSign(b.getLocation()).getCellString(), jail);
 					if (cell.getUUID() == null) return;
-					sendActionBar(e.getPlayer(), ChatColor.GREEN + "Click to release §6" + Bukkit.getPlayer(cell.getUUID()).getName() + " §afrom their cell!");
+					sendActionBar(e.getPlayer(), ChatColor.GREEN + "Click to release " + ChatColor.GOLD + Bukkit.getPlayer(cell.getUUID()).getName() + ChatColor.GREEN + " from their cell!");
 				}
 			}
 		}

@@ -131,7 +131,8 @@ public class Cell implements ConfigurationSerializable {
 		p.getInventory().setContents(this.getContents());
 		p.getInventory().setArmorContents(this.getArmor());
 		p.sendMessage(Messages.CRIMINAL_RELEASED.toString());
-		((org.bukkit.block.Sign) Signs.getInstance().getSign(this).getLoc().getBlock().getState()).setLine(3, "ยง4(empty)");
+		((org.bukkit.block.Sign) Signs.getInstance().getSign(this).getLoc().getBlock().getState()).setLine(3, "ง4(empty)");
+		((org.bukkit.block.Sign) Signs.getInstance().getSign(this).getLoc().getBlock().getState()).update();
 		p = null;
 	}
 
