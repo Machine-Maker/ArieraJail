@@ -30,7 +30,6 @@ public class Reload extends SubCommand {
 			Configs.getInstance().reloadConfig(ConfigType.SIGNS);
 			break;
 		default: 
-			System.out.println("Name: " + fileName);
 			p.sendMessage(Messages.PREFIX.toString() + Messages.NOT_CONFIG.toString());
 			return;
 		}
