@@ -60,7 +60,7 @@ public enum Messages {
 	String path;
 	String def;
 	
-	private Messages(String path, String def) {
+	Messages(String path, String def) {
 		this.path = path;
 		this.def = def;
 	}

@@ -32,7 +32,7 @@ public class Handcuffs {
 
 	/**
 	 * Uncuffs the player cuffed by a cop
-	 * @param cuffer Cop who cuffed the player
+	 * @param cuff Handcuff object
 	 */
 	public void unCuff(Handcuff cuff) {
 		cuff.getCuffee().setWalkSpeed(0.2f);
