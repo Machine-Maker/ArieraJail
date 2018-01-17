@@ -1,4 +1,4 @@
-package me.x1machinemaker1x.arierajail.cmds;
+	package me.x1machinemaker1x.arierajail.cmds;
 
 import java.util.Set;
 
