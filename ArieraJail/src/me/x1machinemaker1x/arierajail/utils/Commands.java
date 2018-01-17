@@ -4,21 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import me.x1machinemaker1x.arierajail.cmds.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import me.x1machinemaker1x.arierajail.cmds.CreateCell;
-import me.x1machinemaker1x.arierajail.cmds.CreateJail;
-import me.x1machinemaker1x.arierajail.cmds.CreateSign;
-import me.x1machinemaker1x.arierajail.cmds.DeleteCell;
-import me.x1machinemaker1x.arierajail.cmds.DeleteJail;
-import me.x1machinemaker1x.arierajail.cmds.JailList;
-import me.x1machinemaker1x.arierajail.cmds.Reload;
-import me.x1machinemaker1x.arierajail.cmds.SetCellSpawn;
-import me.x1machinemaker1x.arierajail.cmds.SetRelease;
-import me.x1machinemaker1x.arierajail.cmds.SubCommand;
 
 
 public class Commands implements CommandExecutor {
@@ -34,6 +24,7 @@ public class Commands implements CommandExecutor {
 		commands.add(new SetCellSpawn());
 		commands.add(new CreateSign());
 		commands.add(new Reload());
+		commands.add(new LogCmd());
 	}
 
 	public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {

@@ -3,6 +3,7 @@ package me.x1machinemaker1x.arierajail;
 import java.util.HashMap;
 import java.util.UUID;
 
+import me.x1machinemaker1x.arierajail.utils.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -20,12 +21,6 @@ import me.x1machinemaker1x.arierajail.events.PlayerInteract;
 import me.x1machinemaker1x.arierajail.events.PlayerMove;
 import me.x1machinemaker1x.arierajail.events.PlayerQuit;
 import me.x1machinemaker1x.arierajail.objects.HandcuffTimer;
-import me.x1machinemaker1x.arierajail.utils.Commands;
-import me.x1machinemaker1x.arierajail.utils.Configs;
-import me.x1machinemaker1x.arierajail.utils.Handcuffs;
-import me.x1machinemaker1x.arierajail.utils.Jails;
-import me.x1machinemaker1x.arierajail.utils.Messages;
-import me.x1machinemaker1x.arierajail.utils.Signs;
 
 public class ArieraJail extends JavaPlugin {
 	
@@ -46,6 +41,7 @@ public class ArieraJail extends JavaPlugin {
 		saveConfig();
 		
 		Configs.getInstance().setup(this);
+		LogFile.getInstance().setup(this);
 		Messages.setup(this);
 		Jails.getInstance().setup(this);
 		Handcuffs.getInstance().setup();
