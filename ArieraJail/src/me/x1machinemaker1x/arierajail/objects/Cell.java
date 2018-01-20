@@ -6,16 +6,17 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.block.Sign;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 
 import me.x1machinemaker1x.arierajail.ArieraJail;
 import me.x1machinemaker1x.arierajail.utils.Jails;
+import me.x1machinemaker1x.arierajail.utils.LogFile;
 import me.x1machinemaker1x.arierajail.utils.Messages;
 import me.x1machinemaker1x.arierajail.utils.Serialize;
 import me.x1machinemaker1x.arierajail.utils.Signs;
@@ -31,10 +32,11 @@ public class Cell implements ConfigurationSerializable {
 	Location cellSpawn = null;
 	String jailName = null;
 	
-	BukkitRunnable jailTimer = null;
+	JailTimer jailTimer = null;
+	Integer jailTime = null;
 	Integer counter = null;
 	
-	public Cell(String name, CuboidSelection sel, UUID uuid, ItemStack[] contents, ItemStack[] armor, Location cellSpawn, String jailName, Integer counter) {
+	public Cell(String name, CuboidSelection sel, UUID uuid, ItemStack[] contents, ItemStack[] armor, Location cellSpawn, String jailName, Integer jailTime, Integer counter) {
 		this.name = name;
 		this.sel = sel;
 		this.uuid = uuid;
@@ -49,7 +51,7 @@ public class Cell implements ConfigurationSerializable {
 	}
 	
 	public Cell(String name, CuboidSelection sel, String jailName) {
-		this(name, sel, null, null, null, null, jailName, null);
+		this(name, sel, null, null, null, null, jailName,null, null);
 	}
 	
 	public String getName() {
@@ -90,7 +92,15 @@ public class Cell implements ConfigurationSerializable {
 	}
 	
 	public String getJailName() {
-		return jailName;
+		return this.jailName;
+	}
+	
+	public JailTimer getJailTimer() {
+		return this.jailTimer;
+	}
+	
+	public Integer getJailTime() {
+		return this.jailTime;
 	}
 	
 	public Integer getCounter() {
@@ -102,18 +112,23 @@ public class Cell implements ConfigurationSerializable {
 	}
 	
 	public void startSentence(int seconds) {
+		this.jailTime = seconds;
 		this.counter = seconds;
 		this.jailTimer = new JailTimer(seconds, Bukkit.getPlayer(this.getUUID()), this);
 		this.jailTimer.runTaskTimer(ArieraJail.getPlugin(), 0L, 20L);
 	}
 	
 	public void clearCell() {
+		Sign sign = (Sign) Signs.getInstance().getSign(this).getLoc().getBlock().getState();
+		sign.setLine(3, org.bukkit.ChatColor.RED + "(empty)");
+		sign.update();
+		this.jailTimer.cancel();
+		this.jailTimer = null;
 		this.uuid = null;
 		this.contents = null;
 		this.armor = null;
+		this.jailTime = null;
 		this.counter = null;
-		this.jailTimer.cancel();
-		this.jailTimer = null;
 	}
 	
 	public void lockUp() {
@@ -126,13 +141,13 @@ public class Cell implements ConfigurationSerializable {
 	}
 	
 	public void release() {
+		LogFile.getInstance().getActiveLog(this.getUUID()).setReleased(this.getJailTime() - this.getCounter(), (this.getJailTime() - this.getCounter() != this.getJailTime()) ? true : false);
+		LogFile.getInstance().saveLog();
 		Player p = Bukkit.getPlayer(this.getUUID());
 		p.teleport(Jails.getInstance().getJail(this.getJailName()).getRelease());
 		p.getInventory().setContents(this.getContents());
 		p.getInventory().setArmorContents(this.getArmor());
 		p.sendMessage(Messages.CRIMINAL_RELEASED.toString());
-		((org.bukkit.block.Sign) Signs.getInstance().getSign(this).getLoc().getBlock().getState()).setLine(3, "§4(empty)");
-		((org.bukkit.block.Sign) Signs.getInstance().getSign(this).getLoc().getBlock().getState()).update();
 		p = null;
 	}
 
@@ -147,6 +162,7 @@ public class Cell implements ConfigurationSerializable {
 		map.put("armor", Serialize.itemStackArrayToBase64(this.getArmor()));
 		map.put("cellSpawn", Serialize.locationToBase64(this.getSpawn()));
 		map.put("jail-name", this.getJailName());
+		map.put("jailTime", this.getJailTime());
 		map.put("counter", this.getCounter());
 		return map;
 	}
@@ -161,7 +177,8 @@ public class Cell implements ConfigurationSerializable {
 		ItemStack[] armor = Serialize.itemStackArrayFromBase64(String.valueOf(map.get("armor")));
 		Location cellSpawn = Serialize.base64ToLocation(String.valueOf(map.get("cellSpawn")));
 		String jailName = String.valueOf(map.get("jail-name"));
+		Integer jailTime = (map.get("jailTime") == null) ? null : Integer.valueOf(String.valueOf(map.get("jailTime")));
 		Integer counter = (map.get("counter") == null) ? null : Integer.valueOf(String.valueOf(map.get("counter")));
-		return new Cell(name, sel, uuid, contents, armor, cellSpawn, jailName, counter);
+		return new Cell(name, sel, uuid, contents, armor, cellSpawn, jailName, jailTime, counter);
 	}
 }

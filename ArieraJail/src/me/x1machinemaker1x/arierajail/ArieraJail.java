@@ -3,7 +3,6 @@ package me.x1machinemaker1x.arierajail;
 import java.util.HashMap;
 import java.util.UUID;
 
-import me.x1machinemaker1x.arierajail.utils.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -12,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 
 import me.x1machinemaker1x.arierajail.cmds.HandcuffsCmd;
+import me.x1machinemaker1x.arierajail.cmds.TimeLeft;
 import me.x1machinemaker1x.arierajail.cmds.UnhandcuffCmd;
 import me.x1machinemaker1x.arierajail.events.BlockBreak;
 import me.x1machinemaker1x.arierajail.events.EntityInteract;
@@ -21,6 +21,13 @@ import me.x1machinemaker1x.arierajail.events.PlayerInteract;
 import me.x1machinemaker1x.arierajail.events.PlayerMove;
 import me.x1machinemaker1x.arierajail.events.PlayerQuit;
 import me.x1machinemaker1x.arierajail.objects.HandcuffTimer;
+import me.x1machinemaker1x.arierajail.utils.Commands;
+import me.x1machinemaker1x.arierajail.utils.Configs;
+import me.x1machinemaker1x.arierajail.utils.Handcuffs;
+import me.x1machinemaker1x.arierajail.utils.Jails;
+import me.x1machinemaker1x.arierajail.utils.LogFile;
+import me.x1machinemaker1x.arierajail.utils.Messages;
+import me.x1machinemaker1x.arierajail.utils.Signs;
 
 public class ArieraJail extends JavaPlugin {
 	
@@ -62,6 +69,7 @@ public class ArieraJail extends JavaPlugin {
 		getCommand("handcuffs").setExecutor(new HandcuffsCmd());
 		getCommand("arierajail").setExecutor(cm);
 		getCommand("unhandcuff").setExecutor(new UnhandcuffCmd());
+		getCommand("timeleft").setExecutor(new TimeLeft());
 	}
 	
 	public void onDisable() {
@@ -152,6 +160,9 @@ public class ArieraJail extends JavaPlugin {
 	 * - (DONE)add config options for length of sentence
 	 * - (DONE)add method to give player back all inventory 
 	 * - -----restrict player more when handcuffed
+	 * - Add command /timeleft for people in jail to see remaining sentence time
+	 * - (DONE)add new commands to plugin.yml
+	 * - (DONE)Add new groups for permissions to plugin.yml
 	 * 
 	 * permissions:
 	 * - (DONE)arierajail.createcell

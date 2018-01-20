@@ -1,10 +1,10 @@
 package me.x1machinemaker1x.arierajail.objects;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.x1machinemaker1x.arierajail.utils.Jails;
-import net.md_5.bungee.api.ChatColor;
 
 public class JailTimer extends BukkitRunnable {
 	
@@ -22,16 +22,26 @@ public class JailTimer extends BukkitRunnable {
 	public void run() {
 		if (counter > 0) {
 			if (counter == 60)
-				player.sendMessage(ChatColor.GREEN + "1 minute left!");
-			else if (counter == 10) 
-				player.sendMessage(ChatColor.GREEN + "10 seconds left");
-			cell.setCounter(counter);
+				try {
+					player.sendMessage(org.bukkit.ChatColor.GREEN + "1 minute left!");
+				} catch (NullPointerException e) { }
+			else if (counter == 10)
+				try {
+					player.sendMessage(org.bukkit.ChatColor.GREEN + "10 seconds left");
+				} catch (NullPointerException e) { }
 			counter --;
+			cell.setCounter(counter);
 		}
 		else {
-			cell.release();
-			cell.clearCell();
-			Jails.getInstance().saveJails();
+			if (Bukkit.getOfflinePlayer(player.getUniqueId()).isOnline()) {
+				cell.release();
+				cell.clearCell();
+				Jails.getInstance().saveJails();
+			}
 		}
+	}
+	
+	public int timeLeft() {
+		return this.counter;
 	}
 }

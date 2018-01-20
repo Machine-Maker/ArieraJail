@@ -70,7 +70,7 @@ public class Jails {
 	
 	/**
 	 * Deletes a jail
-	 * @param jail Jail to delte
+	 * @param jail Jail to delete
 	 */
 	public void delJail(Jail jail) {
 		jails.remove(jail);
@@ -94,6 +94,10 @@ public class Jails {
 	 * @param jail Jail to delete cell from
 	 */
 	public void delCell(Cell cell, Jail jail) {
+		if (cell.getUUID() != null) {
+			cell.release();
+		}
+		cell.clearCell();
 		jail.delCell(cell);
 		saveJails();
 	}

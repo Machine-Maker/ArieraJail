@@ -1,6 +1,8 @@
 package me.x1machinemaker1x.arierajail.utils;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -24,6 +26,7 @@ public enum Messages {
 	CELL_CREATED("cell-created", "&aYou have created the cell %cellname% for jail %jailname%!"),
 	CELL_DELETED("cell-deleted", "&aYou have deleted the cell %cellname% from jail %jailname%!"),
 	NOT_IN_CELL("not-in-cell", "&cThis location is not in the cell area!"),
+	NOT_IN_JAIL("not-in-jail", "&cYou are not in jail"),
 	RELEASE_SET("release-set", "&aThe release point for jail %name% has been set to your location!"),
 	CELLSPAWN_SET("cellspawn-set", "&aThe cell spawn for cell %cellname% in jail %jailname% has been set!"),
 	NO_RELEASE_SET("no-release-set", "&cNo release point has been set for this jail!"),
@@ -33,6 +36,9 @@ public enum Messages {
 	
 	RELOAD_CONFIG("reload-config", "&a%filename% %has/have% been reloaded"),
 	NOT_CONFIG("not-config", "&cThat is not a valid configuration!"),
+	LOG_CLEARED("log-cleared", "&aThe log file has been cleared!"),
+	TIME_LEFT("time-left", "&aYou have %time% left in jail!"),
+	NO_LOG("no-log", "&cThere is no log for that player!"),
 	NO_JAILS("no-jails", "&cNo jails have been created!"),
 	
 	GOT_HANDCUFFS("got-handcuffs", "&aYou have received handcuffs"),
@@ -55,7 +61,9 @@ public enum Messages {
 	CRINIMAL_LOCKED_UP("locked-up.criminal", "&aYou have been locked up!"),
 	COP_LOCKED_UP("locked-up.cop", "&a%playername% was put into jail!"),
 	CRIMINAL_RELEASED("released.criminal", "&aYou have been released! Don't get caught again :)"),
-	COP_RELEASED("released.cop", "&aYou have released %playername%");
+	COP_RELEASED("released.cop", "&aYou have released %playername%"),
+	CLICK_TO_RELEASE("click-to-release", "&aClick the sign to release &6%playername% &afrom their cell!"),
+	CLICK_TO_IMPRISON("click-to-imprison", "&aClick the sign to put &6%playername% &ain this cell!");
 	
 	String path;
 	String def;
@@ -111,5 +119,19 @@ public enum Messages {
 	@Override
 	public String toString() {
 		return ChatColor.translateAlternateColorCodes('&', this.getDefault());
+	}
+	
+	/**
+	 * Converts seconds to hh:mm:ss format
+	 * @param seconds seconds to convert
+	 * @return string in hh:mm:ss format
+	 */
+	public static String convertTime(Integer seconds) {
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		cal.set(Calendar.SECOND, seconds);
+		return new SimpleDateFormat("HH:mm:ss").format(cal.getTime());
 	}
 }

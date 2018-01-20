@@ -96,8 +96,9 @@ public class Signs {
 		Iterator<Sign> i = signs.iterator();
 		while (i.hasNext()) {
 			Sign s = i.next();
-			if (s.getLoc().equals(loc))
-				signs.remove(s);
+			if (s.getLoc().equals(loc)) {
+				i.remove();
+			}
 		}
 		saveSigns();
 	}

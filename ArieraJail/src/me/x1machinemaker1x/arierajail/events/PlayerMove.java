@@ -3,7 +3,6 @@ package me.x1machinemaker1x.arierajail.events;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -51,7 +50,7 @@ public class PlayerMove implements Listener {
 				int maxDistanceSquared = Configs.getInstance().getConfig(ConfigType.CONFIG).getInt("max-distance-squared");
 				try {
 					if ((cuffer.getLocation().distanceSquared(e.getTo()) <= maxDistanceSquared) || h.didViolate()) return;
-				} catch (IllegalArgumentException __) {
+				} catch (IllegalArgumentException er) {
 					cuffee.teleport(cuffer.getLocation());
 				}
 				Location loc = cuffer.getLocation().clone();
@@ -71,7 +70,7 @@ public class PlayerMove implements Listener {
 				Block b = e.getPlayer().getTargetBlock((Set<Material>) null, 4);
 				if (b.getType().equals(Material.SIGN_POST) || b.getType().equals(Material.WALL_SIGN)) {
 					if (Signs.getInstance().isSign(b.getLocation())) {
-						sendActionBar(e.getPlayer(), ChatColor.GREEN + "Click to put §6" + h.getCuffee().getName() + " §ain this cell!");
+						sendActionBar(e.getPlayer(), Messages.CLICK_TO_IMPRISON.toString().replace("%playername%", h.getCuffee().getName()));
 					}
 				}
 			}
@@ -89,8 +88,9 @@ public class PlayerMove implements Listener {
 				if (Signs.getInstance().isSign(b.getLocation())) {
 					Jail jail = Jails.getInstance().getJail(Signs.getInstance().getSign(b.getLocation()).getJailString());
 					Cell cell = Jails.getInstance().getCell(Signs.getInstance().getSign(b.getLocation()).getCellString(), jail);
+					if (cell == null) return;
 					if (cell.getUUID() == null) return;
-					sendActionBar(e.getPlayer(), ChatColor.GREEN + "Click to release " + ChatColor.GOLD + Bukkit.getPlayer(cell.getUUID()).getName() + ChatColor.GREEN + " from their cell!");
+					sendActionBar(e.getPlayer(), Messages.CLICK_TO_RELEASE.toString().replace("%playername%", Bukkit.getOfflinePlayer(cell.getUUID()).getName()));
 				}
 			}
 		}

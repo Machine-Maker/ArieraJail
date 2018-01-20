@@ -25,6 +25,7 @@ public class Configs {
 		configs.put(new File(plugin.getDataFolder(), "config.yml"), null);
 		configs.put(new File(plugin.getDataFolder(), "jails.yml"), null);
 		configs.put(new File(plugin.getDataFolder(), "signs.yml"), null);
+		configs.put(new File(plugin.getDataFolder(), "log.yml"), null);
 		for (File f : configs.keySet()) {
 			if (!f.exists()) {
 				try {
@@ -41,6 +42,8 @@ public class Configs {
 				ConfigType.JAILS.setFile(f);
 			else if (f.getName().equals("signs.yml"))
 				ConfigType.SIGNS.setFile(f);
+			else if (f.getName().equals("log.yml"))
+				ConfigType.LOG.setFile(f);
 			configs.put(f, YamlConfiguration.loadConfiguration(f));
 		}
 	}
@@ -64,6 +67,7 @@ public class Configs {
 	public enum ConfigType {
 		CONFIG,
 		SIGNS,
+		LOG,
 		JAILS;
 		
 		File f;

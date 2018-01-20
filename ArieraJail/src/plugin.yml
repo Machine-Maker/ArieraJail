@@ -1,5 +1,5 @@
 name: ArieraJail
-version: 0.1.2
+version: 1.0.0
 desription: Adds jails for criminals
 author: X1machinemaker1X
 depend: [WorldEdit]
@@ -12,11 +12,16 @@ commands:
   unhandcuff:
     description: Unhandcuffs the player
     aliases: [uncuff]
+  timeleft:
+    description: Shows time left in your sentence
+    aliases: [tl]
   arierajail:
     description: Main command for ArieraJail
     aliases: [aj, ajail]
         
 permission:
+  arierajail.clearlog:
+    default: op
   arierajail.createcell:
     default: op
   arierajail.createjail:
@@ -31,6 +36,22 @@ permission:
     default: op
   arierajail.jaillist:
     default: op
+  arierajail.log:
+    default: false
+  arierajail.log.self:
+    default: false
+    children:
+      arierajail.log: true
+  arierajail.log.others:
+    default: false
+    children:
+      arierajail.log: true
+  arierajail.log.all:
+    default: op
+    children:
+      arierajail.log: true
+      arierajail.log.self: true
+      arierajail.log.others: true
   arierajail.reload:
     default: op
   arierajail.setcellspawn:
@@ -50,6 +71,7 @@ permission:
   arierajail.admin:
     default: op
     children:
+      arierajail.clearlog: true
       arierajail.createcell: true
       arierajail.createjail: true
       arierajail.createsign: true

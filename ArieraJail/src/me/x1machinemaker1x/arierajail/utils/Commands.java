@@ -25,6 +25,7 @@ public class Commands implements CommandExecutor {
 		commands.add(new CreateSign());
 		commands.add(new Reload());
 		commands.add(new LogCmd());
+		commands.add(new ClearLog());
 	}
 
 	public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {
@@ -34,9 +35,17 @@ public class Commands implements CommandExecutor {
 		}
 		Player p = (Player) cs;
 		if (args.length == 0) {
-			p.sendMessage(Messages.PREFIX.toString() + "/handcuffs - Gives the player handcuffs");
+			if (p.hasPermission("arierajail.handcuffs")) {
+				p.sendMessage(Messages.PREFIX.toString() + "/handcuffs (cuffs) - Gives the player handcuffs");
+				p.sendMessage(Messages.PREFIX.toString() + "/unhandcuff (uncuff) - Unhandcuffs the player");
+			}
+			if (p.hasPermission("arierajail.timeleft")) {
+				p.sendMessage(Messages.PREFIX.toString() + "/timeleft (tl) - Shows time left in your sentence");
+			}
 			for (SubCommand c : this.commands) {
-				p.sendMessage(Messages.PREFIX.toString() + c.format() + " (" + aliases(c) + ") - " + c.info());
+				if (p.hasPermission(c.permission())) {
+					p.sendMessage(Messages.PREFIX.toString() + c.format() + " (" + aliases(c) + ") - " + c.info());
+				}
 			}
 			return true;
 		}
