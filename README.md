@@ -45,11 +45,18 @@ To get a pair of handcuffs in your inventory do __`/handcuffs`__. With the handc
 |`/aj setcellspawn`|`(setcs, scs)`|Sets the cell spawn|`arierajail.setcellspawn`|
 |`/aj reload <config-type>`|`(rel, r)`|Reloads configurations|`arierajail.reload`|
 |`/aj jaillist`|`(jlist, jl)`|Lists jails and cells|`arierajail.jaillist`|
+|`/aj log <playername\|all>`|`(l)`|Displays a jail log|`arierajail.log`|
+|`/aj clearlog`|`(clog, cl)`|Clears all logs|`arierajail.clearlog`|
 |`/handcuffs`|`(cuffs)`|Gives handcuffs|`arierajail.handcuffs`|
+|`/unhandcuff`|`(uncuff)`|Unhandcuffs player|`arierajail.handcuffs`|
+|`/timeleft`|`(tl)`|Shows time left in jail|`arierajail.timeleft`|
 
 ##### Standalone Permissions
 |Permission|Description|
 |:--------:|:---------:|
+|`arierajail.log.self`|Allows player to see their own log|
+|`arierajail.log.others`|Allows player to see other's logs|
+|`arierajail.log.all`|Allows player to see all logs|
 |`arierajail.putinjail`|Allows cops to put player in a cell|
 |`arierajail.releasefromjail`|Allows cops to release a player|
 |`arierajail.handcuffs.bypass`|Makes handcuffs not work on this player|
